@@ -7,3 +7,5 @@ IN_JUPYTER = get_ipython().config.get("IPKernelApp") is not None
 @register_line_magic
 def module(line):
   get_ipython().magics_manager.magics["line"]["run"](os.path.join(IPython.paths.locate_profile(), "startup", "modules", line + ".ipy"))
+
+%module default

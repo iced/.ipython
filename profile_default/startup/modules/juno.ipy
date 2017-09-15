@@ -1,0 +1,5 @@
+import hexgrid
+import hexgridgeo
+from udwh2 import cdr
+
+GRID = hexgridgeo.Grid(hexgrid.OrientationFlat, hexgrid.Point(666, 666), hexgridgeo.ProjectionSM)
