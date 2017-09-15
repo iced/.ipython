@@ -1,0 +1,7 @@
+import os.path
+import IPython.paths
+from IPython.core.magic import register_line_magic
+
+@register_line_magic
+def module(line):
+  get_ipython().magics_manager.magics["line"]["run"](os.path.join(IPython.paths.locate_profile(), "startup", "modules", line + ".ipy"))
