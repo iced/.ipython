@@ -1,0 +1,25 @@
+import folium
+import s2sphere as s2
+
+LOCATION_NYC = [-74.0059, 40.7127]
+
+folium.Map.__init__ = functools.partialmethod(folium.Map.__init__, location=LOCATION_NYC[::-1], zoom_start=11, tiles="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}", attr="Google Maps")
+
+def collection_to_folium_feature(collection, geometry, properties={}, popup=None):
+    features = folium.FeatureGroup(overlay=True)
+    for e in collection:
+        geometry_ = geometry(e) if callable(geometry) else geometry
+        properties_ = properties(e) if callable(properties) else properties
+        feature = folium.GeoJson({"type": "Feature", "geometry": geometry_, "properties": properties_}, overlay=False)
+        if popup is not None:
+            popup_ = popup(e) if callable(popup) else popup
+            folium.Popup(popup_).add_to(feature)
+        feature.add_to(features)
+    return features
+
+def s2cell_to_geojson_geometry(cell):
+    points = []
+    for k in range(4):
+        point = s2.LatLng.from_point(cell.get_vertex(k))
+        points.append([point.lng().degrees, point.lat().degrees])
+    return {"type": "Polygon", "coordinates": [points]}

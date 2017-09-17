@@ -1,11 +1,10 @@
+import functools
+import sys
 import json
 import arrow
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
+from tqdm import trange
 
-if IN_JUPYTER:
-  from tqdm import tqdm_notebook as tqdm
-  from tqdm import tnrange as trange
-else:
-  from tqdm import tqdm
-  from tqdm import trange
+tqdm.__init__ = functools.partialmethod(tqdm.__init__, file=sys.stdout)
