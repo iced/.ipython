@@ -2,4 +2,8 @@ import hexgrid
 import hexgridgeo
 from udwh2 import cdr
 
-GRID = hexgridgeo.Grid(hexgrid.OrientationFlat, hexgrid.Point(666, 666), hexgridgeo.ProjectionSM)
+JUNO_HEXGRID = hexgridgeo.Grid(hexgrid.OrientationFlat, hexgrid.Point(666, 666), hexgridgeo.ProjectionSM)
+
+def hex_to_geojson_geometry(h, grid=JUNO_HEXGRID):
+    points = list(map(lambda p: [p.lon, p.lat], grid.hex_corners(h)))
+    return {"type": "Polygon", "coordinates": [points]}
