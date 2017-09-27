@@ -3,7 +3,7 @@ import s2sphere as s2
 
 LOCATION_NYC = [-74.0059, 40.7127]
 
-jm.Map.__init__ = functools.partialmethod(jm.Map.__init__, location=LOCATION_NYC, zoom_start=11)
+jm.Map.__init__ = functools.partialmethod(jm.Map.__init__, center=LOCATION_NYC, zoom=11)
 
 jm.init(MAPBOX_GL_JS_ACCESS_TOKEN)
 
