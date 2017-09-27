@@ -6,4 +6,5 @@ JUNO_HEXGRID = hexgridgeo.Grid(hexgrid.OrientationFlat, hexgrid.Point(666, 666),
 
 def hex_to_geojson_geometry(h, grid=JUNO_HEXGRID):
     points = list(map(lambda p: [p.lon, p.lat], grid.hex_corners(h)))
+    points.append(points[0])
     return {"type": "Polygon", "coordinates": [points]}

@@ -4,12 +4,12 @@ mpl.use("agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-if IN_JUPYTER:
+if __IN_JUPYTER:
     %matplotlib inline
     %config InlineBackend.figure_format = "retina"
 
 plt.rcParams["figure.figsize"] = (12, 8)
 sns.set(style="darkgrid", color_codes=True, rc={"font.sans-serif": "Helvetica Neue", "legend.frameon": True})
 
-if IN_JUPYTER:
+if __IN_JUPYTER:
     sns.set_context("notebook", font_scale=1.3)
