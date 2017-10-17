@@ -3,7 +3,7 @@ import IPython.paths
 from IPython.core.magic import register_line_magic
 
 __IN_JUPYTER = get_ipython().config.get("IPKernelApp") is not None
-__MODULES_ROOT = os.path.join(IPython.paths.locate_profile(), "startup", "modules")
+__MODULES_ROOT = os.path.join(IPython.paths.locate_profile(), "..", "modules")
 
 @register_line_magic
 def module(line):
